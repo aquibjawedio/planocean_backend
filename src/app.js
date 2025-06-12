@@ -1,6 +1,11 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+
 import connectDB from "./config/connectDB.js";
+
+// Importing all routes here
+import healthCheckRouter from "./routes/healthcheck.route.js";
 
 const app = express();
 
@@ -8,18 +13,19 @@ const app = express();
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
-    allowedHeaders: true,
     credentials: true,
     methods: ["GET", "POST", "DELETE", "PUT"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Database connection
 connectDB();
 
 // Routes configuration
-app.get("/", (req, res) => res.send("PlanOcean Server is running"));
+app.use("/api/v1/healthcheck", healthCheckRouter);
 
 export default app;
