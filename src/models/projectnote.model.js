@@ -1,19 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 
-const subtaskSchema = new Schema(
+const projectNoteSchema = new Schema(
   {
-    title: {
+    content: {
       type: String,
       required: true,
-      trim: true,
     },
-    isCompleted: {
-      type: Boolean,
-      default: false,
-    },
-    task: {
+    project: {
       type: Schema.Types.ObjectId,
-      ref: "Task",
+      ref: "Project",
       required: true,
     },
     createdBy: {
@@ -25,6 +20,6 @@ const subtaskSchema = new Schema(
   { timestamps: true, versionKey: false }
 );
 
-const SubTask = mongoose.model("SubTask", subtaskSchema);
+const ProjectNote = mongoose.model("ProjectNote", projectNoteSchema);
 
-export { SubTask };
+export { ProjectNote };
