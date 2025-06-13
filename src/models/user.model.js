@@ -28,7 +28,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
       trim: true,
-      select: false,
     },
     role: {
       type: String,
@@ -72,18 +71,15 @@ const userSchema = new Schema(
     },
     emailVerificationToken: {
       type: String,
-      select: false,
     },
     forgotPasswordToken: {
       type: String,
-      select: false,
     },
     forgotPasswordExpiry: {
       type: Date,
     },
     refreshToken: {
       type: String,
-      select: false,
     },
   },
   { timestamps: true, versionKey: false }

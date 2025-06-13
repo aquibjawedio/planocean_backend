@@ -5,7 +5,9 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/connectDB.js";
 
 // Importing all routes here
-import healthCheckRouter from "./routes/healthcheck.route.js";
+import { healthCheckRouter } from "./routes/healthcheck.route.js";
+import { authRouter } from "./routes/auth.route.js";
+import { errorHandler } from "./middlewares/error.middleware.js";
 
 const app = express();
 
@@ -27,5 +29,9 @@ connectDB();
 
 // Routes configuration
 app.use("/api/v1/healthcheck", healthCheckRouter);
+app.use("/api/v1/auth", authRouter);
+
+// Custom Middlewares
+app.use(errorHandler);
 
 export default app;

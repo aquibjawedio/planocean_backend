@@ -5,4 +5,4 @@ const healthCheckRouter = Router();
 
 healthCheckRouter.route("/").get(healthCheckController);
 
-export default healthCheckRouter;
+export { healthCheckRouter };
