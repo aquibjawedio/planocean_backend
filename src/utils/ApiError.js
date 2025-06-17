@@ -1,11 +1,9 @@
 class ApiError extends Error {
-  constructor(statusCode, message = "Internal Server Error", errors = [], stack = "") {
+  constructor(statusCode, message = "Internal Server Error", originalError = null, stack = "") {
     super(message);
-    this.name = "API ERROR";
+    this.name = "ApiError";
     this.statusCode = statusCode;
-    this.success = false;
-    this.message = message;
-    this.errors = errors;
+    this.originalError = originalError;
 
     if (stack) {
       this.stack = stack;
